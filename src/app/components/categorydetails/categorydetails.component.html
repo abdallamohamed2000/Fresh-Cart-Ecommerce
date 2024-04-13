@@ -1,0 +1,19 @@
+<section *ngIf="categoryDetails._id" class="mx-auto my-5 w-75 shadow p-4 rounded">
+    <div class="row align-items-center g-4 ">
+        <div class="col-md-4">
+            <div>
+                <img height="300" class="w-100  rounded" [src]="categoryDetails.image" [alt]="categoryDetails.name" />
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div>
+                <h3>{{ categoryDetails.name }}</h3>
+                <h4>Sub Categories:</h4>
+
+                <span class="badge bg-secondary me-3" *ngFor="let subCategory of subCategoryData">
+                     {{ subCategory.name }}
+        </span>
+            </div>
+        </div>
+    </div>
+</section>

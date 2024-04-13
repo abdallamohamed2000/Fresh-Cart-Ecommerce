@@ -1,0 +1,39 @@
+<section class="shadow p-4 rounded my-3 w-50 mx-auto my-4">
+    <form [formGroup]="updateDataForm" (ngSubmit)="updateUserData()">
+
+        <h1 class="h3 fw-bolder">Update Your Data</h1>
+        <div>
+            <label for="name">Name</label>
+            <input type="text" #inputname class="form-control" id="name" formControlName="name" />
+            <div *ngIf="updateDataForm.get('name')?.errors && (updateDataForm.get('name')?.touched || inputname.value.length > 0 )">
+                <p class="text-red" *ngIf="updateDataForm.get('name')?.getError('required')">name Is required</p>
+                <p class="text-red" *ngIf="updateDataForm.get('name')?.getError('minlength')">min-length 3</p>
+                <p class="text-red" *ngIf="updateDataForm.get('name')?.getError('maxlength')">max-length 20</p>
+            </div>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="text" #inputemail class="form-control" id="email" formControlName="email" />
+            <div *ngIf="updateDataForm.get('email')?.errors && (updateDataForm.get('email')?.touched || inputemail.value.length > 0 )">
+                <p class="text-red" *ngIf="updateDataForm.get('email')?.getError('required')">email Is required</p>
+                <p class="text-red" *ngIf="updateDataForm.get('email')?.getError('email')">email is invalid</p>
+            </div>
+        </div>
+
+        <div>
+            <label for="phone">Phone</label>
+            <input type="tel" #inputphone class="form-control" id="phone" formControlName="phone" />
+            <div *ngIf="updateDataForm.get('phone')?.errors && (updateDataForm.get('phone')?.touched || inputphone.value.length)">
+                <p class="text-red" *ngIf="updateDataForm.get('phone')?.getError('required')">phone Is required</p>
+                <p class="text-red" *ngIf="updateDataForm.get('phone')?.getError('pattern')">accept only egypt phone numbers</p>
+            </div>
+        </div>
+        <p *ngIf="msgError" class="text-error">{{ msgError }}</p>
+        <button class="main-btn mt-3 ms-auto d-block"> <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>Update</button>
+
+
+
+    </form>
+
+</section>

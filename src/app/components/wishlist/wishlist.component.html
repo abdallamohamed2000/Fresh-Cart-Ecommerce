@@ -1,0 +1,34 @@
+<section class="my-4" *ngIf="products.length > 0; else msg">
+
+    <div class="row g-4">
+        <div class="col-md-2" *ngFor="let item of products">
+            <div class="product h-100 p-2 ">
+
+                <i *ngIf="!wishListData.includes($any(item._id))" (click)="addFavourite(item._id)" class="fa-regular fa-heart heart"></i>
+                <i *ngIf="wishListData.includes($any(item._id))" (click)="removeFavourite(item._id)" class="fa-solid fa-heart heart"></i>
+
+
+                <div role="button" class="p-2 cursor-pointer" [routerLink]="['/productdetails',item._id]">
+                    <img [src]="item.imageCover" class="w-100" [alt]="item.title">
+                    <h3 class="small text-main">{{ item.category.name }}</h3>
+                    <h4 class="h6">{{ item.title | cuttext:2 }}</h4>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="small">{{ item.price | currency:'EUR' }}</span>
+                        <div>
+                            <i [class.rating-color]="item.ratingsAverage >= num" *ngFor="let num of [1,2,3,4,5]" class="fas fa-star"></i>
+                            <span class="text-muted">{{ item.ratingsAverage }}</span>
+                        </div>
+                    </div>
+                </div>
+                <button (click)="addCart(item._id,btnAdd)" #btnAdd class="main-btn w-100 mx-auto">+ Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ng-template #msg>
+    <div class="d-flex justify-content-center align-items-center">
+        <img src="./assets/images/wish.png" height="500" alt="wiss-cart">
+
+    </div>
+</ng-template>

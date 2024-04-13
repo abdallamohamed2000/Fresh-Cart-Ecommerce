@@ -1,0 +1,15 @@
+.text-red {
+  color: rgb(180, 5, 5);
+  padding-top: 2px;
+}
+
+.text-error {
+  color: rgb(251, 249, 249);
+  margin-top: 10px;
+  padding: 5px 15px;
+  background-color: rgb(39, 34, 34);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 5px;
+}/*# sourceMappingURL=register.component.css.map */

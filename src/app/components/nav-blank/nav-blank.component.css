@@ -1,0 +1,8 @@
+nav {
+  transition: padding 1s;
+}
+
+.top-end {
+  top: -5px;
+  right: -5px;
+}/*# sourceMappingURL=nav-blank.component.css.map */

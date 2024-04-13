@@ -1,0 +1,70 @@
+<nav #navBar class="navbar navbar-expand-md bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="home">
+            <img src="./assets/images/freshcart-logo.svg" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-capitalize" routerLink="home" routerLinkActive="active-link">home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-capitalize" routerLink="products" routerLinkActive="active-link">products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-capitalize" routerLink="categories" routerLinkActive="active-link">categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-capitalize" routerLink="brands" routerLinkActive="active-link">brands</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-capitalize" routerLink="allorders" routerLinkActive="active-link">My Orders</a>
+                </li>
+
+
+            </ul>
+            <ul class="navbar-nav ms-auto d-flex justify-content-center align-items-center">
+
+                <li class="nav-item">
+                    <a class="nav-link position-relative" routerLink="/profile">
+                        <div class="circle-icon">
+                            <i class="fas fa-user fs-5 text-green"></i>
+                        </div>
+
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link position-relative" routerLink="/wishlist">
+                        <i class=" fa-solid fa-heart fa-xl text-danger"></i>
+                        <span class="badge py-1 px-2 active-link position-absolute top-end">{{ wishListNum }}</span>
+
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link position-relative" routerLink="/cart">
+                        <i class=" fas fa-cart-shopping fa-xl text-grey"></i>
+                        <span class="badge py-1 px-2 active-link position-absolute top-end ">{{ cartNum }}</span>
+                    </a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <span (click)="logOutUser()" class="nav-link cursor-pointer p-0 ms-3 ">
+                        <button class="btn btn-success">logout</button>
+                    </span>
+                </li>
+
+
+
+            </ul>
+
+        </div>
+    </div>
+</nav>

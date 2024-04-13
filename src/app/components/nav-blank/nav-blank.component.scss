@@ -1,0 +1,18 @@
+nav {
+    transition: padding 1s;
+}
+
+.top-end {
+    top: -5px;
+    right: -5px;
+}
+
+.circle-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 3px solid rgb(65, 134, 71);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

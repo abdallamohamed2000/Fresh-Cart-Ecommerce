@@ -1,0 +1,78 @@
+<!-- main slider -->
+
+<section>
+    <div class="row g-0 d-flex justify-content-center ">
+        <div class="col-md-9">
+            <owl-carousel-o [options]="mainSlider">
+                <ng-template carouselSlide>
+                    <img src="./assets/images/s1.jpg" height="450" class="w-100" alt="main-slider-1">
+
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="./assets/images/s2.jpg" height="450" class="w-100" alt="main-slider-2">
+
+                </ng-template>
+                <ng-template carouselSlide>
+                    <img src="./assets/images/s3.jpg" height="450" class="w-100" alt="main-slider-3">
+
+                </ng-template>
+
+            </owl-carousel-o>
+        </div>
+        <div class="col-md-3">
+            <img src="./assets/images/1.jpeg" height="225" class="w-100" alt="main-slider">
+            <img src="./assets/images/2.jpeg" height="225" class="w-100" alt="main-slider">
+
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Categories -->
+<section class="py-4" *ngIf="categories.length > 0">
+
+    <h2 class="mb-4 catsize">popular categories</h2>
+    <owl-carousel-o [options]="categoriesSliderOptions">
+
+        <ng-container *ngFor="let item of categories">
+            <ng-template carouselSlide>
+
+                <img [src]="item.image" height="270" class="w-100" [alt]="item.name">
+                <h3 class="h5">{{ item.name }}</h3>
+            </ng-template>
+        </ng-container>
+
+    </owl-carousel-o>
+</section>
+
+<!-- products -->
+<section class="my-4 w-75 mx-auto" *ngIf="products.length > 0">
+    <h2 class="catsize">Popular Products</h2>
+
+    <input type="search" class="form-control w-50 mx-auto my-3" placeholder="Search...." [(ngModel)]="searchTerm">
+    <div class="row g-4">
+        <div class="col-md-3" *ngFor="let item of products | search : searchTerm | slice:0:12 ">
+            <div class="product h-100 p-2 ">
+
+                <i *ngIf="!wishListData.includes($any(item._id))" (click)="addFavourite(item._id)" class="fa-solid fa-heart fa-2x text-dark heart"></i>
+                <i *ngIf="wishListData.includes($any(item._id))" (click)="removeFavourite(item._id)" class="fa-solid fa-heart heart"></i>
+
+
+                <div role="button" class="p-2 cursor-pointer" [routerLink]="['/productdetails',item._id]">
+                    <img [src]="item.imageCover" class="w-100" [alt]="item.title">
+                    <h3 class="small text-main">{{ item.category.name }}</h3>
+                    <h4 class="h6">{{ item.title | cuttext:2 }}</h4>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="small">{{ item.price | currency:'EUR' }}</span>
+                        <div>
+                            <i class="fas fa-star rating-color"></i>
+                            <span class="text-muted">{{ item.ratingsAverage }}</span>
+                        </div>
+                    </div>
+                </div>
+                <button (click)="addCart(item._id,btnAdd)" #btnAdd class="main-btn w-100 mx-auto">+ Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</section>

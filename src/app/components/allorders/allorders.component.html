@@ -1,0 +1,110 @@
+<ng-container *ngIf="ordersData && ordersData.length > 0; else msg">
+    <section class="shadow p-4 rounded my-3 w-75 mx-auto my-4" *ngFor="let order of ordersData">
+        <div class="row">
+            <div class="col-5">
+                <div>
+                    <p class="fw-bolder m-0">Order ID: #{{ order.id }}</p>
+                    <p class="text-body-tertiary my-2 fw-semibold">{{ order.createdAt | date }}</p>
+                    <p>Payment Method: <span class="p-1 rounded bg-dark-subtle fw-bolder">{{ order.paymentMethodType }}</span></p>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="d-flex justify-content-around">
+                    <div class="paid">
+                        <span class="text-body-tertiary fw-bolder">isPaid: </span>
+                        <span class="p-1 rounded fw-bolder" [ngClass]="{'bg-success': order.isPaid, 'bg-danger': !order.isPaid}">
+                            {{ order.isPaid ? 'true' : 'false' }}
+                        </span>
+                    </div>
+                    <div class="deliv">
+                        <span class="text-body-tertiary fw-bolder">isDelivered: </span>
+                        <span class="p-1 rounded fw-bolder" [ngClass]="{'bg-success': order.isDelivered, 'bg-danger': !order.isDelivered}">
+                            {{ order.isDelivered ? 'true' : 'false' }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="customer mt-5">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="cust-info">
+                            <h3 class="h5 fw-bolder">Customer Info</h3>
+                            <div class="tag">
+                                <span class="text-body-tertiary fw-bolder">Name: </span>
+                                <span class="fw-bolder">{{ order.user.name }}</span>
+                            </div>
+                            <div class="tag">
+                                <span class="text-body-tertiary fw-bolder">Email: </span>
+                                <span class="fw-bolder">{{ order.user.email }}</span>
+                            </div>
+                            <div class="tag">
+                                <span class="text-body-tertiary fw-bolder">Phone: </span>
+                                <span class="fw-bolder">{{ order.user.phone }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="order-info">
+                            <h3 class="h5 fw-bolder">Shipping Info</h3>
+                            <div class="tag">
+                                <span class="text-body-tertiary fw-bolder">Details: </span>
+                                <span class="fw-bolder">{{ order.shippingAddress.details }}</span>
+                            </div>
+                            <div class="tag">
+                                <span class="text-body-tertiary fw-bolder">City: </span>
+                                <span class="fw-bolder">{{ order.shippingAddress.city }}</span>
+                            </div>
+                            <div class="tag">
+                                <span class="text-body-tertiary fw-bolder">Phone: </span>
+                                <span class="fw-bolder">{{ order.shippingAddress.phone }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="border border-3 border-light rounded mt-5">
+            <table class="table mb-0 rounded">
+                <thead>
+                    <tr class="table-light fw-bolder">
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of order.cartItems">
+                        <td>
+                            <div class="d-flex align-items-center cursor-pointer" [routerLink]="['/productdetails', item.product.id]">
+                                <img [src]="item.product.imageCover" [alt]="item.product.title | cuttext:2" style="width: 40px;">
+                                <span class="ms-2 fw-bolder font-sm">{{ item.product.title | cuttext:2 }}</span>
+                            </div>
+                        </td>
+                        <td>{{ item.price | currency:'EUR' }}</td>
+                        <td>
+                            <div class=" w-75 mx-auto">
+                                <p class="p-0 m-0">{{ item.count }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="bg-primary-subtle fw-bolder">Total: {{ order.totalOrderPrice | currency:'EUR' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</ng-container>
+
+<ng-template #msg>
+    <div class="d-flex justify-content-center align-items-center">
+        <img src="./assets/images/cartttempty.jpg" height="500" alt="empty-cart">
+
+    </div>
+</ng-template>

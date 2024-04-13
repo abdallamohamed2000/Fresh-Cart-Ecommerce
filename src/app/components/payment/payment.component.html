@@ -1,0 +1,37 @@
+<section class="shadow p-4 rounded my-3 w-50 mx-auto my-4">
+    <form [formGroup]="checkout" (ngSubmit)="handleForm()">
+
+        <h1 class="h3 fw-bolder">Enter Your Shipping Details :</h1>
+        <div>
+            <label for="details">Shipping Details:</label>
+            <input type="text" #inputDetails class="form-control" id="details" formControlName="details" />
+            <div *ngIf="checkout.get('details')?.errors && (checkout.get('details')?.touched || inputDetails.value.length > 0 )">
+                <p class="text-red" *ngIf="checkout.get('details')?.getError('required')">Details Is required</p>
+                <p class="text-red" *ngIf="checkout.get('details')?.getError('minlength')">min-length 3</p>
+                <p class="text-red" *ngIf="checkout.get('details')?.getError('maxlength')">max-length 40</p>
+            </div>
+        </div>
+        <div>
+            <label for="phone">Phone</label>
+            <input type="tel" #inputPhone class="form-control" id="phone" formControlName="phone" />
+            <div *ngIf="checkout.get('phone')?.errors && (checkout.get('phone')?.touched || inputPhone.value.length)">
+                <p class="text-red" *ngIf="checkout.get('phone')?.getError('required')">phone Is required</p>
+                <p class="text-red" *ngIf="checkout.get('phone')?.getError('pattern')">accept only egypt phone numbers</p>
+            </div>
+        </div>
+        <div>
+            <label for="city">City</label>
+            <input type="text" #inputCity class="form-control" id="city" formControlName="city" />
+            <div *ngIf="checkout.get('city')?.errors && (checkout.get('city')?.touched || inputCity.value.length > 0 )">
+                <p class="text-red" *ngIf="checkout.get('city')?.getError('required')">City Is required</p>
+                <p class="text-red" *ngIf="checkout.get('city')?.getError('minlength')">min-length 3</p>
+                <p class="text-red" *ngIf="checkout.get('city')?.getError('maxlength')">max-length 20</p>
+            </div>
+        </div>
+        <button class="main-btn mt-3 d-block ms-auto"> <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>Checkout</button>
+
+
+
+    </form>
+
+</section>

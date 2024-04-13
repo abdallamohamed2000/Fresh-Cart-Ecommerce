@@ -1,0 +1,30 @@
+<section class="shadow p-4 rounded my-3 w-50 mx-auto my-4">
+
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <div class="cust-info">
+                <h3 class="h5 fw-bolder">Customer Info</h3>
+                <div class="tag">
+                    <span class="text-body-tertiary fw-bolder">Name: </span>
+                    <span class="fw-bolder">{{ Name }}</span>
+                </div>
+                <div class="tag">
+                    <span class="text-body-tertiary fw-bolder">Email: </span>
+                    <span class="fw-bolder">{{ Email }}</span>
+                </div>
+                <div class="tag">
+                    <span class="text-body-tertiary fw-bolder">yourRole: </span>
+                    <span class="fw-bolder">{{ Role }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <button routerLink="/updatedata" class="btn btn-warning mb-2">Update your Data</button>
+            <button routerLink="/updatepassword" class="btn btn-success">Update Password</button>
+
+        </div>
+
+    </div>
+
+
+</section>
